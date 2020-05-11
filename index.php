@@ -15,7 +15,7 @@ require_once("model/data-layer.php");
 $f3 = Base::instance();
 
 //Default route
-$f3->route('GET /', function() {
+$f3->route('GET /', function () {
     //echo '<h1>Welcome to my Food Page</h1>';
 
     $view = new Template();
@@ -23,7 +23,7 @@ $f3->route('GET /', function() {
 });
 
 //Breakfast route
-$f3->route('GET /breakfast', function() {
+$f3->route('GET /breakfast', function () {
     //echo '<h1>Welcome to my Breakfast Page</h1>';
 
     $view = new Template();
@@ -32,7 +32,7 @@ $f3->route('GET /breakfast', function() {
 });
 
 //Breakfast / green eggs & ham route
-$f3->route('GET /breakfast/green-eggs', function() {
+$f3->route('GET /breakfast/green-eggs', function () {
     //echo '<h1>Welcome to my Breakfast Page</h1>';
 
     $view = new Template();
@@ -41,7 +41,7 @@ $f3->route('GET /breakfast/green-eggs', function() {
 });
 
 //Reuben route
-$f3->route('GET /lunch/sandwiches/reuben', function() {
+$f3->route('GET /lunch/sandwiches/reuben', function () {
 
     $view = new Template();
     echo $view->render('views/reuben.html');
@@ -49,20 +49,19 @@ $f3->route('GET /lunch/sandwiches/reuben', function() {
 });
 
 //Order route
-$f3->route('GET|POST /order', function($f3) {
+$f3->route('GET|POST /order', function ($f3) {
 
     $meals = getMeals();
 
     //If the form has been submitted
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         var_dump($_POST);
         //["food"]=>"tacos" ["meal"]=>"lunch"
 
         //Validate the data
         if (empty($_POST['food']) || !in_array($_POST['meal'], $meals)) {
             echo "<p>Please enter a food and select a meal</p>";
-        }
-        //Data is valid
+        } //Data is valid
         else {
             //Store the data in the session array
             $_SESSION['food'] = $_POST['food'];
@@ -80,12 +79,12 @@ $f3->route('GET|POST /order', function($f3) {
 });
 
 //Order2 route
-$f3->route('GET|POST /order2', function($f3) {
+$f3->route('GET|POST /order2', function ($f3) {
 
     $conds = getCondiments();
 
     //If the form has been submitted
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         //Store the data in the session array
         $_SESSION['conds'] = $_POST['conds'];
@@ -100,7 +99,7 @@ $f3->route('GET|POST /order2', function($f3) {
 });
 
 //Summary route
-$f3->route('GET /summary', function() {
+$f3->route('GET /summary', function () {
     //echo '<h1>Thank you for your order!</h1>';
 
     $view = new Template();
